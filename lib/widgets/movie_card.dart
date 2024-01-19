@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movieflix/screens/detail_screen.dart';
 
 class MovieCard extends StatelessWidget {
   final String imageUrl, title;
@@ -13,37 +14,45 @@ class MovieCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          width: 200,
-          height: 200,
-          clipBehavior: Clip.hardEdge,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Image.network(
-            'https://image.tmdb.org/t/p/w500$imageUrl',
-            fit: BoxFit.cover,
-          ),
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        SizedBox(
-          width: 200,
-          child: Text(
-            title,
-            softWrap: true,
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.w900,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => DetailScreen(id: id)),
+        );
+      },
+      child: Column(
+        children: [
+          Container(
+            width: 200,
+            height: 200,
+            clipBehavior: Clip.hardEdge,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
             ),
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
+            child: Image.network(
+              'https://image.tmdb.org/t/p/w500$imageUrl',
+              fit: BoxFit.cover,
+            ),
           ),
-        ),
-      ],
+          const SizedBox(
+            height: 16,
+          ),
+          SizedBox(
+            width: 200,
+            child: Text(
+              title,
+              softWrap: true,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w900,
+              ),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

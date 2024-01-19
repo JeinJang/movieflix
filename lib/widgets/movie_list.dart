@@ -18,7 +18,9 @@ class MovieList extends StatelessWidget {
         future: movies,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
-            return const CircularProgressIndicator();
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           }
           return ListView.separated(
             scrollDirection: Axis.horizontal,
